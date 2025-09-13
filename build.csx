@@ -6,6 +6,10 @@ using HedgeModManager.CodeCompiler;
 var StartDirectory = Environment.CurrentDirectory;
 var TestOnly = false;
 var Failures = new List<string>();
+var IgnoreGlobals = new List<string>()
+{
+    "Unleashed Recompiled"
+};
 
 Environment.CurrentDirectory = Path.Combine(StartDirectory, "Source");
 
@@ -50,9 +54,10 @@ async Task BuildFolder(string path, bool test = true)
     Console.WriteLine($"Building {name}");
 
     var system = new BuildSystem();
-    if (!string.Equals(Path.GetFileName(path), "Globals", StringComparison.OrdinalIgnoreCase))
+    if (!IgnoreGlobals.Contains(name))
     {
-        system.AddFolder("Globals");
+        if (!string.Equals(Path.GetFileName(path), "Globals", StringComparison.OrdinalIgnoreCase))
+            system.AddFolder("Globals");
     }
     
     system.AddFolder(path);
@@ -106,7 +111,15 @@ async Task BuildFolder(string path, bool test = true)
         Console.WriteLine($"{name} built successfully");
         if (!TestOnly)
         {
-            var outPath = Path.Combine(StartDirectory, "build", $"{Path.GetFileName(path).Replace(" ", string.Empty)}.hmm");
+            string GetCodeFileName()
+            {
+                return Path.GetFileName(path)
+                    .Replace(" ", "")
+                    .Replace("(", "")
+                    .Replace(")", "");
+            }
+
+            var outPath = Path.Combine(StartDirectory, "build", $"{GetCodeFileName()}.hmm");
             Directory.CreateDirectory(Path.GetDirectoryName(outPath));
             File.WriteAllText(outPath, result);
         }

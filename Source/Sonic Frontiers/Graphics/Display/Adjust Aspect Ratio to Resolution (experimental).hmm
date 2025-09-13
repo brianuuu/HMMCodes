@@ -3,12 +3,13 @@ Code "Adjust Aspect Ratio to Resolution (experimental)" in "Graphics/Display" by
 Dynamically adjusts the aspect ratio to match the game resolution (recommended for non-16:9 resolutions).
 
 Notes;
+- This code will still function at 16:9 resolutions, but will only fix minor aspect ratio issues (such as improper cutscene aspect ratio).
 - The UI will be stretched automatically for square or portrait resolutions.
 
 Known issues;
 - Certain UI effects are rendered at the correct aspect ratio, but will misalign due to the main UI still being 16:9.
 - Certain UI elements are still rendered at 16:9 and will misalign or stretch.
-- Certain UI elements will be cut off incorrectly at wider aspect ratios. (ex. Jukebox)
+- Certain UI elements will be cut off incorrectly at wider aspect ratios (e.g. Juke Box).
 - Pre-rendered cutscenes will stretch to your aspect ratio.
 - The letterboxing during cutscenes will end up blocking the view at wider aspect ratios, it is highly recommended to use the Disable In-Game Letterboxing code to remove it.
 - The expected aspect ratio will only apply to a newly set resolution when you re-enter the resolution list and select the same resolution again.
