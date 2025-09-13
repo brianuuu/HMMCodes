@@ -1,2 +1,2 @@
-Patch "Remove '&' at Skill Selection" in "UI/White Space" by "brianuuu"
+Patch "Remove '&' at Skill Selection" in "UI/White Space" by "brianuuu" does "Removes the '&' symbol between two custom name tags in skill selection screen, applies to all languages except for Japanese" 
 WriteProtected<byte>(0x10A1C14, 0x68)
