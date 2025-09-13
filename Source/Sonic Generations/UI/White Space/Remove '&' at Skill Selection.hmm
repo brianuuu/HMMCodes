@@ -1,0 +1,2 @@
+Patch "Remove '&' at Skill Selection" in "UI/White Space" by "brianuuu"
+WriteProtected<byte>(0x10A1C14, 0x68)
